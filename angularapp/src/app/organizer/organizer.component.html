@@ -1,0 +1,45 @@
+<mat-tab-group>
+  <mat-tab label="Participants">
+    <mat-list>
+      <mat-list-item *ngFor="let participant of participants">
+        {{ participant }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-tab>
+  <mat-tab label="Winner">
+    <div style="padding-bottom: 15px; padding-top: 15px;" *ngIf="!showWinner">
+      <button type="button" (click)="pickWinner()" style="margin-left: 30% !important;" class="mat-raised-button mat-accent">Pick Winner</button>
+    </div>
+    <mat-divider></mat-divider>
+    <div *ngIf="showWinner">
+      <div style="padding-top: 15px; margin-left: 45%; font-size: 28px;">
+        Congratulation!
+      </div>
+      <div style="padding-top: 15px;">
+        <img style="height: 250px; margin-left: 35%;" src="assets/images/winner.jpg">
+      </div>
+      <div style="padding-top: 15px; margin-left: 45%; font-size: 30px; color: blue;">
+        {{winner}}
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Send Prize Amount">
+    <mat-card>
+      <mat-card-title>
+        Transfer Prize amount to Winner
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field class="demo-full-width">
+          <mat-icon matPrefix>money</mat-icon>
+          <input matInput type="number" [(ngModel)]="prizeAmount">
+          <mat-hint>Enter the Amount.</mat-hint>
+        </mat-form-field>
+        <mat-card-footer>
+          <button type="button" (click)="transferAmount()" class="mat-raised-button mat-primary">Transfer</button>
+        </mat-card-footer>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+<mat-spinner style="margin-left: 40%" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
